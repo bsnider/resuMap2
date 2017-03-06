@@ -97,7 +97,7 @@
             <span class="calcite-title-main">Bradley J Snider</span>
 
             <span class="calcite-title-divider hidden-xs"></span>
-            <!-- <span class="calcite-title-sub hidden-xs">Welcome to my resuMap!</span> -->
+            <!-- <span class="calcite-title-sub hidden-xs">Welcome to resuMap 2.0 beta!</span> -->
             <span class="calcite-title-sub hidden-xs">ResuMap</span>
 
         </div>
@@ -111,6 +111,8 @@
             <li class=""><a id="resume-btn" role="button" class="hidden-xs hidden-sm" href="SniderResumeWeb.pdf" data-toggle="collapse" target="_blank" data-target=".navbar-collapse.in"><i class="fa fa-cloud-download white"></i>&nbsp;&nbsp;Resume</a></li>
             <!-- github -->
             <li class=""><a id="github-btn" role="button" class="hidden-xs hidden-sm" href="https://github.com/bsnider" data-toggle="collapse" target="_blank" data-target=".navbar-collapse.in"><i class="fa fa-github white"></i>&nbsp;&nbsp;GitHub</a></li>
+            <!-- resumap 1.0 -->
+            <li class=""><a id="resumap-btn" role="button" class="hidden-xs hidden-sm" href="https://github.com/bsnider" data-toggle="collapse" target="_blank" data-target=".navbar-collapse.in"><i class="fa fa-map white"></i>&nbsp;&nbsp;ResuMap 1.0</a></li>
 
 
 
@@ -221,39 +223,12 @@
     <!-- Panel Container -->
     <div id="panels" class="calcite-panels calcite-panels-right calcite-bg-custom calcite-text-light calcite-bgcolor-dark-blue panel-group" role="tablist" aria-multiselectable="true">
 
-        <div id="panelBasemaps" class="panel collapse">
-            <div id="headingBasemaps" class="panel-heading" role="tab">
-                <div class="panel-title">
-                    <a class="panel-toggle collapsed" role="button" data-toggle="collapse" data-target="panels" href="#collapseBasemaps" aria-expanded="false" aria-controls="collapseBasemaps"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span><span class="panel-label">Basemaps</span></a>
-                    <a class="panel-close" role="button" data-toggle="" data-target=""><span class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
-                </div>
-            </div>
-            <div id="collapseBasemaps" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingBasemaps">
-                <div class="panel-body">
-                    <select id="selectBasemapPanel" class="form-control">
-              <option value="streets" data-vector="streets-vector">Streets</option>
-              <option value="satellite" data-vector="satellite" selected="">Satellite</option>
-              <option value="hybrid" data-vector="hybrid">Hybrid</option>
-              <option value="national-geographic" data-vector="national-geographic">National Geographic</option>
-              <option value="topo" data-vector="topo-vector">Topographic</option>
-              <option value="gray" data-vector="gray-vector">Gray</option>
-              <option value="dark-gray" data-vector="dark-gray-vector">Dark Gray</option>
-              <option value="osm" data-vector="osm">Open Street Map</option>
-              <option value="dark-gray" data-vector="streets-night-vector">Streets Night</option>
-              <option value="streets" data-vector="streets-navigation-vector">Streets Mobile</option>
-            </select>
-                </div>
-            </div>
-        </div>
-
         <!-- Esri Panel -->
         <div id='panelInfoEsri' class='panel collapse'>
             <!-- Info Panel Header -->
             <div id='headingInfoEsri' class='panel-heading' role='tab'>
                 <div class='panel-title'>
                     <a class='panel-toggle collapsed' role='button' data-toggle='collapse' href='#collapseInfoEsri' aria-expanded='false' aria-controls='collapseInfoEsri'> <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> <span id='panelLabelEsri' class='panel-label'>Esri</span> </a>
-                    <a class='panel-close' role='button' data-toggle='collapse' data-target='#panelInfoEsri'>
-                        <span class='esri-icon esri-icon-close' aria-hidden='true'></span> </a>
                 </div>
             </div>
             <!-- /Info Panel Header -->
@@ -279,7 +254,6 @@
             <div id='headingInfoPima' class='panel-heading' role='tab'>
                 <div class='panel-title'>
                     <a class='panel-toggle' role='button' data-toggle='collapse' href='#collapseInfo' aria-expanded='true' aria-controls='collapseInfo'> <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> <span id='panelLabelPima' class='panel-label'>Pima County CDNC</span> </a>
-                    <a class='panel-close' role='button' data-toggle='collapse' data-target='#panelInfo'> <span class='esri-icon esri-icon-close' aria-hidden='true'></span> </a>
                 </div>
             </div>
             <!-- /Info Panel Header -->
@@ -302,7 +276,6 @@
             <div id='headingInfoArizona' class='panel-heading' role='tab'>
                 <div class='panel-title'>
                     <a class='panel-toggle' role='button' data-toggle='collapse' href='#collapseInfo' aria-expanded='true' aria-controls='collapseInfo'> <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> <span id='panelLabelArizona' class='panel-label'>University of Arizona</span> </a>
-                    <a class='panel-close' role='button' data-toggle='collapse' data-target='#panelInfo'> <span class='esri-icon esri-icon-close' aria-hidden='true'></span> </a>
                 </div>
             </div>
             <!-- /Info Panel Header -->
@@ -324,7 +297,6 @@
             <div id='headingInfoDHive' class='panel-heading' role='tab'>
                 <div class='panel-title'>
                     <a class='panel-toggle' role='button' data-toggle='collapse' href='#collapseInfo' aria-expanded='true' aria-controls='collapseInfo'> <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> <span id='panelLabelDHive' class='panel-label'>D:hive</span> </a>
-                    <a class='panel-close' role='button' data-toggle='collapse' data-target='#panelInfo'> <span class='esri-icon esri-icon-close' aria-hidden='true'></span> </a>
                 </div>
             </div>
             <!-- /Info Panel Header -->
@@ -346,7 +318,6 @@
             <div id='headingInfoUnitedWay' class='panel-heading' role='tab'>
                 <div class='panel-title'>
                     <a class='panel-toggle' role='button' data-toggle='collapse' href='#collapseInfo' aria-expanded='true' aria-controls='collapseInfo'> <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> <span id='panelLabelUnitedWay' class='panel-label'>United Way</span> </a>
-                    <a class='panel-close' role='button' data-toggle='collapse' data-target='#panelInfo'> <span class='esri-icon esri-icon-close' aria-hidden='true'></span> </a>
                 </div>
             </div>
             <!-- /Info Panel Header -->
@@ -369,7 +340,6 @@
             <div id='headingInfoHillel' class='panel-heading' role='tab'>
                 <div class='panel-title'>
                     <a class='panel-toggle' role='button' data-toggle='collapse' href='#collapseInfo' aria-expanded='true' aria-controls='collapseInfo'> <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> <span id='panelLabelHillel' class='panel-label'>U of M Hillel</span> </a>
-                    <a class='panel-close' role='button' data-toggle='collapse' data-target='#panelInfo'> <span class='esri-icon esri-icon-close' aria-hidden='true'></span> </a>
                 </div>
             </div>
             <!-- /Info Panel Header -->
@@ -392,7 +362,6 @@
             <div id='headingInfoSitC' class='panel-heading' role='tab'>
                 <div class='panel-title'>
                     <a class='panel-toggle' role='button' data-toggle='collapse' href='#collapseInfo' aria-expanded='true' aria-controls='collapseInfo'> <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> <span id='panelLabelSitC' class='panel-label'>Summer in the City</span> </a>
-                    <a class='panel-close' role='button' data-toggle='collapse' data-target='#panelInfo'> <span class='esri-icon esri-icon-close' aria-hidden='true'></span> </a>
                 </div>
             </div>
             <!-- /Info Panel Header -->
@@ -415,7 +384,6 @@
             <div id='headingInfoTRU' class='panel-heading' role='tab'>
                 <div class='panel-title'>
                     <a class='panel-toggle' role='button' data-toggle='collapse' href='#collapseInfo' aria-expanded='true' aria-controls='collapseInfo'> <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> <span id='panelLabelTRU' class='panel-label'>Transit Riders United</span> </a>
-                    <a class='panel-close' role='button' data-toggle='collapse' data-target='#panelInfo'> <span class='esri-icon esri-icon-close' aria-hidden='true'></span> </a>
                 </div>
             </div>
             <!-- /Info Panel Header -->
@@ -438,7 +406,6 @@
             <div id='headingInfoMichDNR' class='panel-heading' role='tab'>
                 <div class='panel-title'>
                     <a class='panel-toggle' role='button' data-toggle='collapse' href='#collapseInfo' aria-expanded='true' aria-controls='collapseInfo'> <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> <span id='panelLabelMichDNR' class='panel-label'>Michigan Fisheries Institute</span> </a>
-                    <a class='panel-close' role='button' data-toggle='collapse' data-target='#panelInfo'> <span class='esri-icon esri-icon-close' aria-hidden='true'></span> </a>
                 </div>
             </div>
             <!-- /Info Panel Header -->
@@ -461,7 +428,6 @@
             <div id='headingInfoBlockM' class='panel-heading' role='tab'>
                 <div class='panel-title'>
                     <a class='panel-toggle' role='button' data-toggle='collapse' href='#collapseInfo' aria-expanded='true' aria-controls='collapseInfo'> <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> <span id='panelLabelBlockM' class='panel-label'>University of Michigan</span> </a>
-                    <a class='panel-close' role='button' data-toggle='collapse' data-target='#panelInfo'> <span class='esri-icon esri-icon-close' aria-hidden='true'></span> </a>
                 </div>
             </div>
             <!-- /Info Panel Header -->

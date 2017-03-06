@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="description" content="Calcite Maps Demo - ArcGIS">
+    <title>Bradley J. Snider</title>
+
+    <!-- Calcite Maps Bootstrap -->
+    <link rel="stylesheet" href="https://esri.github.io/calcite-maps/dist/css/calcite-maps-bootstrap.min-v0.3.css">
+
+    <!-- Calcite Maps -->
+    <link rel="stylesheet" href="https://esri.github.io/calcite-maps/dist/css/calcite-maps-arcgis-4.x.min-v0.3.css">
+
+    <!-- ArcGIS JS 4.0 -->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.3/esri/css/main.css">
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        /*.calcite-panels-right{
+      right: 60px;
+    }*/
+
+        .esriText {
+            padding-left: 30px;
+        }
+
+        .esri-ui-bottom-right {
+            bottom: 15px;
+        }
+
+        #panels {
+            min-width: 350px
+        }
+
+        .dropdownClass {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+    </style>
+
+</head>
+
+<body class="calcite-maps calcite-nav-top">
+
+    <!-- Navbar -->
+
+    <nav class="navbar calcite-navbar navbar-fixed-top calcite-text-light calcite-bg-dark calcite-bgcolor-dark-blue">
+        <!-- Menu -->
+        <div class="dropdown calcite-dropdown calcite-bg-light calcite-text-dark" role="presentation">
+            <a class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">
+                <div class="calcite-dropdown-toggle">
+                    <span class="sr-only">Toggle dropdown menu</span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </a>
+            <ul id="dropdownList" class="dropdown-menu calcite-menu-drawer">
+                <li><a class="hidden-md hidden-lg" href="#2dTab" aria-controls="2Dtab" role="tab" data-toggle="tab"> 2D</a></li>
+                <li class="active"><a class="hidden-md hidden-lg" href="#3dTab" aria-controls="3Dtab" role="tab" data-toggle="tab"> 3D</a></li>
+
+
+                <li id='EsriDiv'><a class='EsriClass dropdownClass row' role='button' aria-haspopup='true'><span class='EsriClass col-xs-2'><img class='EsriClass img-center' style='vertical-align:bottom' height='24' src='icons/Esri.png' /></span><span class='esriText EsriClass col-xs-5' style='padding-left:30px;'>Esri</span></a></li>
+
+                <li id='PimaDiv'><a class='PimaClass dropdownClass row' role='button' aria-haspopup='true'><span class='PimaClass col-xs-2'><img class='PimaClass img-center' style='vertical-align:bottom' height='24' src='icons/Pima.png' /></span><span class='PimaClass col-xs-5' style='padding-left:30px;'>Pima County CDNC</span></a></li>
+
+                <li id='ArizonaDiv'><a class='ArizonaClass dropdownClass row' role='button' aria-haspopup='true'><span class='ArizonaClass col-xs-2'><img class='ArizonaClass img-center' style='vertical-align:bottom' height='24' src='icons/Arizona.png' /></span><span class='ArizonaClass col-xs-5' style='padding-left:30px;'>University of Arizona</span></a></li>
+
+                <li id='DHiveDiv'><a class='DHiveClass dropdownClass row' role='button' aria-haspopup='true'><span class='DHiveClass col-xs-2'><img class='DHiveClass img-center' style='vertical-align:bottom' height='24' src='icons/DHive.png' /></span><span class='DHiveClass col-xs-5' style='padding-left:30px;'>D:hive</span></a></li>
+
+                <li id='UnitedWayDiv'><a class='UnitedWayClass dropdownClass row' role='button' aria-haspopup='true'><span class='UnitedWayClass col-xs-2'><img class='UnitedWayClass img-center' style='vertical-align:bottom' height='24' src='icons/UnitedWay.png' /></span><span class='UnitedWayClass col-xs-5' style='padding-left:30px;'>United Way</span></a></li>
+
+                <li id='HillelDiv'><a class='HillelClass dropdownClass row' role='button' aria-haspopup='true'><span class='HillelClass col-xs-2'><img class='HillelClass img-center' style='vertical-align:bottom' height='24' src='icons/Hillel.png' /></span><span class='HillelClass col-xs-5' style='padding-left:30px;'>U of M Hillel</span></a></li>
+
+                <li id='SitCDiv'><a class='SitCClass dropdownClass row' role='button' aria-haspopup='true'><span class='SitCClass col-xs-2'><img class='SitCClass img-center' style='vertical-align:bottom' height='24' src='icons/SitC.png' /></span><span class='SitCClass col-xs-5' style='padding-left:30px;'>Summer in the City</span></a></li>
+
+                <li id='TRUDiv'><a class='TRUClass dropdownClass row' role='button' aria-haspopup='true'><span class='TRUClass col-xs-2'><img class='TRUClass img-center' style='vertical-align:bottom' height='24' src='icons/TRU.png' /></span><span class='TRUClass col-xs-5' style='padding-left:30px;'>Transit Riders United</span></a></li>
+
+                <li id='MichDNRDiv'><a class='MichDNRClass dropdownClass row' role='button' aria-haspopup='true'><span class='MichDNRClass col-xs-2'><img class='MichDNRClass img-center' style='vertical-align:bottom' height='24' src='icons/MichDNR.png' /></span><span class='MichDNRClass col-xs-5' style='padding-left:30px;'>Michigan Fisheries Institute</span></a></li>
+
+                <li id='BlockMDiv'><a class='BlockMClass dropdownClass row' role='button' aria-haspopup='true'><span class='BlockMClass col-xs-2'><img class='BlockMClass img-center' style='vertical-align:bottom' height='24' src='icons/BlockM.png' /></span><span class='BlockMClass col-xs-5' style='padding-left:30px;'>University of Michigan</span></a></li>
+
+            </ul>
+        </div>
+        <!-- Title -->
+        <div class="calcite-title calcite-overflow-hidden">
+            <!-- <span class="calcite-title-main">Bradley J. Snider</span> -->
+            <span class="calcite-title-main">Bradley J Snider</span>
+
+            <span class="calcite-title-divider hidden-xs"></span>
+            <!-- <span class="calcite-title-sub hidden-xs">Welcome to my resuMap!</span> -->
+            <span class="calcite-title-sub hidden-xs">ResuMap</span>
+
+        </div>
+        <!-- Nav -->
+        <ul class="calcite-nav nav navbar-nav">
+
+            <li class=""><a id="about-btn" role="button" class="hidden-xs hidden-sm" href="" data-toggle="modal" data-target="#aboutModal" data-gallery="remoteload"><i class="fa fa-question-circle white"></i>&nbsp;&nbsp;About</a></li>
+            <!-- contact -->
+            <li class=""><a id="contact-btn" role="button" class="hidden-xs hidden-sm" href="" data-toggle="modal" data-target="#contactModal"><i class="fa fa-envelope-o white"></i>&nbsp;&nbsp;Contact</a></li>
+            <!-- resume -->
+            <li class=""><a id="resume-btn" role="button" class="hidden-xs hidden-sm" href="SniderResumeWeb.pdf" data-toggle="collapse" target="_blank" data-target=".navbar-collapse.in"><i class="fa fa-cloud-download white"></i>&nbsp;&nbsp;Resume</a></li>
+            <!-- github -->
+            <li class=""><a id="github-btn" role="button" class="hidden-xs hidden-sm" href="https://github.com/bsnider" data-toggle="collapse" target="_blank" data-target=".navbar-collapse.in"><i class="fa fa-github white"></i>&nbsp;&nbsp;GitHub</a></li>
+
+
+
+            <!-- <li class="calcite-divider hidden-xs"></li> -->
+
+
+            <li><a id="mapNav" class="viewNav hidden-xs hidden-sm" href="#2dTab" aria-controls="2Dtab" aria-expanded="true" role="tab" data-toggle="tab" data-tooltip="tip" title="2D View" data-placement="bottom">2D</a></li>
+
+
+            <li class="active"><a id="sceneNav" class="viewNav hidden-xs hidden-sm" href="#3dTab" aria-controls="3Dtab" role="tab" data-toggle="tab" data-tooltip="tip" title="3D View" data-placement="bottom">3D</a></li>
+            <li>
+                <div class="calcite-navbar-search calcite-search-expander">
+                    <div id="searchWidgetDiv"></div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <!--/.navbar -->
+
+    <!-- Map Container  -->
+
+    <div class="calcite-map calcite-map-absolute">
+        <div id="tabContainer" class="tab-content">
+            <div id="2dTab" class="tab-pane fade" role="tabpanel">
+                <div id="mapViewDiv"></div>
+            </div>
+            <div id="3dTab" class="tab-pane fade in active" role="tabpanel">
+                <div id="sceneViewDiv"></div>
+            </div>
+        </div>
+    </div>
+    <!-- /Map Container  -->
+
+
+    <!-- Modals  -->
+
+    <!-- About Modal -->
+    <div class="modal fade" id="aboutModal" role="dialog">
+        <div class="modal-dialog modal-md">
+            <!-- Modal content-->
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h2 class="text-center"><img src="images/portrait.jpg" alt="Portrait photo" height="200" width="200" class="img-circle"><br>Welcome!</h2>
+                </div>
+
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <p>Thanks for stopping by!</p>
+
+                                <p>I am a Developer Support Analyst at <a href="http://www.esri.com">Esri</a>. I provide world-class technical support to clients developing custom applications using Esri’s software, APIs and SDKs.</p>
+                                <p>I am a lover of Detroit, tech geek, map nerd, environmentalist, hiker, biker, and Michigan Football fanatic.</p>
+                                <p>My journey has taken me from Metro Detroit > Ann Arbor > Detroit > Tucson > Redlands. Please check out my website to learn more about my personal and professional life. The interactive 'ResuMap' shows a glimpse into my educational
+                                    and professional journey.
+                                </p>
+                                <p style="color:rgb(36, 143, 255)">
+                                    <em>Go Blue!</em>
+                                </p>
+                                <p>Brad</p>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+    <!-- /About Modal -->
+
+    <!-- Contact Modal -->
+    <div class="modal fade" id="contactModal" role="dialog">
+        <div class="modal-dialog modal-md">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="color:black">
+                    <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Please contact me!</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row centered">
+                        <div class="col-lg-8 col-lg-offset-2 w tooltip-demo">
+                            <p style="text-align:center">
+                                <a data-toggle="tooltip" title="LinkedIn" href="http://www.linkedin.com/in/bradleysnider"><i class="fa fa-linkedin fa-3x"></i></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <a data-toggle="tooltip" title="Twitter" href="http://twitter.com/bjsnider"><i class="fa fa-twitter fa-3x"></i></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                <a data-toggle="tooltip" title="Email Me!" href="mailto:brad@bradleyjsnider.com"><i class="fa fa-envelope fa-3x"></i></a>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+    <!-- /Contact Modal -->
+
+    <!--/ Modals  -->
+
+
+    <!-- Panel Container -->
+    <div id="panels" class="calcite-panels calcite-panels-right calcite-bg-custom calcite-text-light calcite-bgcolor-dark-blue panel-group" role="tablist" aria-multiselectable="true">
+
+        <div id="panelBasemaps" class="panel collapse">
+            <div id="headingBasemaps" class="panel-heading" role="tab">
+                <div class="panel-title">
+                    <a class="panel-toggle collapsed" role="button" data-toggle="collapse" data-target="panels" href="#collapseBasemaps" aria-expanded="false" aria-controls="collapseBasemaps"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span><span class="panel-label">Basemaps</span></a>
+                    <a class="panel-close" role="button" data-toggle="" data-target=""><span class="esri-icon esri-icon-close" aria-hidden="true"></span></a>
+                </div>
+            </div>
+            <div id="collapseBasemaps" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingBasemaps">
+                <div class="panel-body">
+                    <select id="selectBasemapPanel" class="form-control">
+              <option value="streets" data-vector="streets-vector">Streets</option>
+              <option value="satellite" data-vector="satellite" selected="">Satellite</option>
+              <option value="hybrid" data-vector="hybrid">Hybrid</option>
+              <option value="national-geographic" data-vector="national-geographic">National Geographic</option>
+              <option value="topo" data-vector="topo-vector">Topographic</option>
+              <option value="gray" data-vector="gray-vector">Gray</option>
+              <option value="dark-gray" data-vector="dark-gray-vector">Dark Gray</option>
+              <option value="osm" data-vector="osm">Open Street Map</option>
+              <option value="dark-gray" data-vector="streets-night-vector">Streets Night</option>
+              <option value="streets" data-vector="streets-navigation-vector">Streets Mobile</option>
+            </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Esri Panel -->
+        <div id='panelInfoEsri' class='panel collapse'>
+            <!-- Info Panel Header -->
+            <div id='headingInfoEsri' class='panel-heading' role='tab'>
+                <div class='panel-title'>
+                    <a class='panel-toggle collapsed' role='button' data-toggle='collapse' href='#collapseInfoEsri' aria-expanded='false' aria-controls='collapseInfoEsri'> <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> <span id='panelLabelEsri' class='panel-label'>Esri</span> </a>
+                    <a class='panel-close' role='button' data-toggle='collapse' data-target='#panelInfoEsri'>
+                        <span class='esri-icon esri-icon-close' aria-hidden='true'></span> </a>
+                </div>
+            </div>
+            <!-- /Info Panel Header -->
+            <!-- Info Panel Body -->
+            <div id='collapseInfoEsri' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingInfo'>
+                <div id='panelBodyEsri' class='panel-body'>Developer Support Analyst<br>
+                    <li class='bullet'>Provide world-class technical support to clients developing custom apps using Esri’s ArcGIS software stack</li>
+                    <li class='bullet'>Work well in a high energy, fast paced, and collaborative environment</li>
+                    <li class='bullet'>Identify, understand, and articulate solutions for customers through oral and written communication</li>
+                    <li class='bullet'>Present ArcGIS SDKs and APIs at conferences and hackathons</li>
+                    <li class='bullet'>Diagnose, evaluate, and document software bugs and enhancements</li>
+                    <li class='bullet'>Train new analysts in the ArcGIS API for JavaScript and AppStudio for ArcGIS</li>
+                    <!-- <li id='panelTextEsri'></li> -->
+                </div>
+            </div>
+            <!-- /Info Panel Body -->
+        </div>
+        <!-- /Esri Panel -->
+
+        <!-- Pima Panel -->
+        <div id='panelInfoPima' class='panel collapse'>
+            <!-- Info Panel Header -->
+            <div id='headingInfoPima' class='panel-heading' role='tab'>
+                <div class='panel-title'>
+                    <a class='panel-toggle' role='button' data-toggle='collapse' href='#collapseInfo' aria-expanded='true' aria-controls='collapseInfo'> <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> <span id='panelLabelPima' class='panel-label'>Pima County CDNC</span> </a>
+                    <a class='panel-close' role='button' data-toggle='collapse' data-target='#panelInfo'> <span class='esri-icon esri-icon-close' aria-hidden='true'></span> </a>
+                </div>
+            </div>
+            <!-- /Info Panel Header -->
+            <!-- Info Panel Body -->
+            <div id='collapseInfoPima' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingInfo'>
+                <div id='panelBodyPima' class='panel-body'>GIS Analyst<br>
+                    <li class='bullet'>Developed database of areas targeted for development assistance based on Federal HUD guidelines</li>
+                    <li class='bullet'>Edited, analyzed, and mapped socio-economic, demographic, and community asset datasets via ArcMap </li>
+                    <li class='bullet'>Prepared a 70-page gazette for consumption by diverse stakeholders</li>
+                    <!-- <li id='panelTextPima'></li> -->
+                </div>
+            </div>
+            <!-- /Info Panel Body -->
+        </div>
+        <!-- /Pima Panel -->
+
+        <!-- Arizona Panel -->
+        <div id='panelInfoArizona' class='panel collapse'>
+            <!-- Info Panel Header -->
+            <div id='headingInfoArizona' class='panel-heading' role='tab'>
+                <div class='panel-title'>
+                    <a class='panel-toggle' role='button' data-toggle='collapse' href='#collapseInfo' aria-expanded='true' aria-controls='collapseInfo'> <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> <span id='panelLabelArizona' class='panel-label'>University of Arizona</span> </a>
+                    <a class='panel-close' role='button' data-toggle='collapse' data-target='#panelInfo'> <span class='esri-icon esri-icon-close' aria-hidden='true'></span> </a>
+                </div>
+            </div>
+            <!-- /Info Panel Header -->
+            <!-- Info Panel Body -->
+            <div id='collapseInfoArizona' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingInfo'>
+                <div id='panelBodyArizona' class='panel-body'>Degree: M.S., GIST<br>
+                    <li class='bullet'>Master’s Project: Explored metropolitan success in the Rust Belt region and the importance of postsecondary education</li>
+                    <li class='bullet'>Utilized Esri’s ArcGIS for Desktop software suite</li>
+                    <!-- <li id='panelTextArizona'></li> -->
+                </div>
+            </div>
+            <!-- /Info Panel Body -->
+        </div>
+        <!-- /Arizona Panel -->
+
+        <!-- DHive Panel -->
+        <div id='panelInfoDHive' class='panel collapse'>
+            <!-- Info Panel Header -->
+            <div id='headingInfoDHive' class='panel-heading' role='tab'>
+                <div class='panel-title'>
+                    <a class='panel-toggle' role='button' data-toggle='collapse' href='#collapseInfo' aria-expanded='true' aria-controls='collapseInfo'> <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> <span id='panelLabelDHive' class='panel-label'>D:hive</span> </a>
+                    <a class='panel-close' role='button' data-toggle='collapse' data-target='#panelInfo'> <span class='esri-icon esri-icon-close' aria-hidden='true'></span> </a>
+                </div>
+            </div>
+            <!-- /Info Panel Header -->
+            <!-- Info Panel Body -->
+            <div id='collapseInfoDHive' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingInfo'>
+                <div id='panelBodyDHive' class='panel-body'>Live Resident<br>
+                    <li class='bullet'>Co-created an initiative to bring talented individuals to live in Downtown Detroit</li>
+                    <li class='bullet'>Managed Twitter account (2000+ clicks/month), 400-member Facebook group for potential residents</li>
+                    <!-- <li id='panelTextDHive'></li> -->
+                </div>
+            </div>
+            <!-- /Info Panel Body -->
+        </div>
+        <!-- /DHive Panel -->
+
+        <!-- UnitedWay Panel -->
+        <div id='panelInfoUnitedWay' class='panel collapse'>
+            <!-- Info Panel Header -->
+            <div id='headingInfoUnitedWay' class='panel-heading' role='tab'>
+                <div class='panel-title'>
+                    <a class='panel-toggle' role='button' data-toggle='collapse' href='#collapseInfo' aria-expanded='true' aria-controls='collapseInfo'> <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> <span id='panelLabelUnitedWay' class='panel-label'>United Way</span> </a>
+                    <a class='panel-close' role='button' data-toggle='collapse' data-target='#panelInfo'> <span class='esri-icon esri-icon-close' aria-hidden='true'></span> </a>
+                </div>
+            </div>
+            <!-- /Info Panel Header -->
+            <!-- Info Panel Body -->
+            <div id='collapseInfoUnitedWay' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingInfo'>
+                <div id='panelBodyUnitedWay' class='panel-body'>AmeriCorps Member<br>
+                    <li class='bullet'>Partnered with agencies to plan and lead corporate and student volunteer projects</li>
+                    <li class='bullet'>xecuted large days of service, amassing a total of over 6,300 volunteer hours from participants</li>
+                    <li class='bullet'>Developed a training program for Team Leaders to conduct smaller volunteer projects</li>
+                    <!-- <li id='panelTextUnitedWay'></li> -->
+                </div>
+            </div>
+            <!-- /Info Panel Body -->
+        </div>
+        <!-- /UnitedWay Panel -->
+
+        <!-- Hillel Panel -->
+        <div id='panelInfoHillel' class='panel collapse'>
+            <!-- Info Panel Header -->
+            <div id='headingInfoHillel' class='panel-heading' role='tab'>
+                <div class='panel-title'>
+                    <a class='panel-toggle' role='button' data-toggle='collapse' href='#collapseInfo' aria-expanded='true' aria-controls='collapseInfo'> <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> <span id='panelLabelHillel' class='panel-label'>U of M Hillel</span> </a>
+                    <a class='panel-close' role='button' data-toggle='collapse' data-target='#panelInfo'> <span class='esri-icon esri-icon-close' aria-hidden='true'></span> </a>
+                </div>
+            </div>
+            <!-- /Info Panel Header -->
+            <!-- Info Panel Body -->
+            <div id='collapseInfoHillel' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingInfo'>
+                <div id='panelBodyHillel' class='panel-body'>Detroit Associate<br>
+                    <li class='bullet'>Coordinated with and supported two student leaders to design a new and innovative curriculum around University of Michigan Hillel student’s relationship with Detroit and its residents</li>
+                    <li class='bullet'>Planned events, meetings, discussions, and volunteer projects with a complex variety of partners</li>
+                    <li class='bullet'>Lead a weeklong alternative spring break trip, managing budget, scheduling, and group morale</li>
+                    <!-- <li id='panelTextHillel'></li> -->
+                </div>
+            </div>
+            <!-- /Info Panel Body -->
+        </div>
+        <!-- /Hillel Panel -->
+
+        <!-- SitC Panel -->
+        <div id='panelInfoSitC' class='panel collapse'>
+            <!-- Info Panel Header -->
+            <div id='headingInfoSitC' class='panel-heading' role='tab'>
+                <div class='panel-title'>
+                    <a class='panel-toggle' role='button' data-toggle='collapse' href='#collapseInfo' aria-expanded='true' aria-controls='collapseInfo'> <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> <span id='panelLabelSitC' class='panel-label'>Summer in the City</span> </a>
+                    <a class='panel-close' role='button' data-toggle='collapse' data-target='#panelInfo'> <span class='esri-icon esri-icon-close' aria-hidden='true'></span> </a>
+                </div>
+            </div>
+            <!-- /Info Panel Header -->
+            <!-- Info Panel Body -->
+            <div id='collapseInfoSitC' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingInfo'>
+                <div id='panelBodySitC' class='panel-body'>In-Residence Fellow<br>
+                    <li class='bullet'>Assisted with general logistics, hosted groups of volunteers and acted as an ambassador to the city</li>
+                    <li class='bullet'>Motivated and built self-esteem in children and volunteers in Project Play, bringing together Metro Detroit high school students and Southwest Detroit elementary school students</li>
+                    <li class='bullet'>Explored the importance of volunteering with high school volunteers through informal discussions</li>
+                    <!-- <li id='panelTextSitC'></li> -->
+                </div>
+            </div>
+            <!-- /Info Panel Body -->
+        </div>
+        <!-- /SitC Panel -->
+
+        <!-- TRU Panel -->
+        <div id='panelInfoTRU' class='panel collapse'>
+            <!-- Info Panel Header -->
+            <div id='headingInfoTRU' class='panel-heading' role='tab'>
+                <div class='panel-title'>
+                    <a class='panel-toggle' role='button' data-toggle='collapse' href='#collapseInfo' aria-expanded='true' aria-controls='collapseInfo'> <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> <span id='panelLabelTRU' class='panel-label'>Transit Riders United</span> </a>
+                    <a class='panel-close' role='button' data-toggle='collapse' data-target='#panelInfo'> <span class='esri-icon esri-icon-close' aria-hidden='true'></span> </a>
+                </div>
+            </div>
+            <!-- /Info Panel Header -->
+            <!-- Info Panel Body -->
+            <div id='collapseInfoTRU' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingInfo'>
+                <div id='panelBodyTRU' class='panel-body'>Transit Equity Researcher<br>
+                    <li class='bullet'>Conducted research on integrating the M1 Woodward light-rail line with Detroit’s current transit system</li>
+                    <li class='bullet'>Compiled a list of recommendations to ensure a socially equitable transit system</li>
+                    <li class='bullet'>Advocated for improved transit funding in Metro Detroit and across the state of Michigan</li>
+                    <!-- <li id='panelTextTRU'></li> -->
+                </div>
+            </div>
+            <!-- /Info Panel Body -->
+        </div>
+        <!-- /TRU Panel -->
+
+        <!-- MichDNR Panel -->
+        <div id='panelInfoMichDNR' class='panel collapse'>
+            <!-- Info Panel Header -->
+            <div id='headingInfoMichDNR' class='panel-heading' role='tab'>
+                <div class='panel-title'>
+                    <a class='panel-toggle' role='button' data-toggle='collapse' href='#collapseInfo' aria-expanded='true' aria-controls='collapseInfo'> <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> <span id='panelLabelMichDNR' class='panel-label'>Michigan Fisheries Institute</span> </a>
+                    <a class='panel-close' role='button' data-toggle='collapse' data-target='#panelInfo'> <span class='esri-icon esri-icon-close' aria-hidden='true'></span> </a>
+                </div>
+            </div>
+            <!-- /Info Panel Header -->
+            <!-- Info Panel Body -->
+            <div id='collapseInfoMichDNR' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingInfo'>
+                <div id='panelBodyMichDNR' class='panel-body'>GIS Analyst<br>
+                    <li class='bullet'>Developed algorithms to obtain anglers’ trip coordinates, using water-body and city/county data</li>
+                    <li class='bullet'>Collaborated with a team from Michigan DNR, University of Michigan, and Michigan State University</li>
+                    <li class='bullet'>Used Microsoft Access and ArcGIS for Desktop to manage, create and edit spatial data</li>
+                    <!-- <li id='panelTextMichDNR'></li> -->
+                </div>
+            </div>
+            <!-- /Info Panel Body -->
+        </div>
+        <!-- /MichDNR Panel -->
+
+        <!-- BlockM Panel -->
+        <div id='panelInfoBlockM' class='panel collapse'>
+            <!-- Info Panel Header -->
+            <div id='headingInfoBlockM' class='panel-heading' role='tab'>
+                <div class='panel-title'>
+                    <a class='panel-toggle' role='button' data-toggle='collapse' href='#collapseInfo' aria-expanded='true' aria-controls='collapseInfo'> <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> <span id='panelLabelBlockM' class='panel-label'>University of Michigan</span> </a>
+                    <a class='panel-close' role='button' data-toggle='collapse' data-target='#panelInfo'> <span class='esri-icon esri-icon-close' aria-hidden='true'></span> </a>
+                </div>
+            </div>
+            <!-- /Info Panel Header -->
+            <!-- Info Panel Body -->
+            <div id='collapseInfoBlockM' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingInfo'>
+                <div id='panelBodyBlockM' class='panel-body'>Degree: B.S., Program in the Environment<br>
+                    <li class='bullet'>Deans’ List (Fall 2006), University Honors (2010)</li>
+                    <!-- <li id='panelTextBlockM'></li> -->
+                </div>
+            </div>
+            <!-- /Info Panel Body -->
+        </div>
+        <!-- /BlockM Panel -->
+
+    </div>
+    <!-- /.calcite-panels -->
+
+    <!-- ArcGIS JS 4.0 -->
+    <script src="https://js.arcgis.com/4.3/"></script>
+
+    <!-- jQuery (for Bootstrap's JavaScript plugins). NOTE: You can also use pure Dojo. See examples. -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script type="text/javascript">
+  $(window).load(function() {
+    $('#aboutModal').modal('show');
+  });
+</script>
+
+    <script src="js/app.js"></script>
+
+    <!-- Bootstrap core JavaScript
+  ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <!-- Include all  plugins or individual files as needed -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!--script src="../../assets/js/ie10-viewport-bug-workaround.js"></script-->
+
+    <!-- Calcite Maps -->
+    <script src="https://esri.github.io/calcite-maps/dist/js/jquery/calcitemaps-v0.3.js"></script>
+
+</body>
+
+</html>
